@@ -1,7 +1,7 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react';
 import Todo from './Todo';
+import AddTodo from './AddTodo.js';
 import { Paper, List } from "@mui/material"
 
 const App = () => {
@@ -26,7 +26,10 @@ const App = () => {
   return (
     <>
       <div className='App'>
-        {todoItems}
+        <Container>
+          <AddTodo/>
+            <div className="TodoList">{todoItems}</div>
+        </Container>
       </div>
     </>
   );
