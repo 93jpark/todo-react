@@ -12,7 +12,7 @@ const AddTodo = () => {
             <Paper style={{margin:16, padding:16}}>
                 <Grid container>
                     <Grid xs={11} md={11} item style={{ paddingRight:16 }}>
-                        <TextField placeholder="Add TOdo here" fullWidth />
+                        <TextField placeholder="Add Todo here" fullWidth />
                     </Grid>
 
                     <Grid xs={1} md={1} item>

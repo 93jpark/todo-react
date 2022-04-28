@@ -26,10 +26,10 @@ const App = () => {
   return (
     <>
       <div className='App'>
-        <Container>
+        <container>
           <AddTodo/>
             <div className="TodoList">{todoItems}</div>
-        </Container>
+        </container>
       </div>
     </>
   );
