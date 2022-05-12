@@ -1,9 +1,11 @@
 import React, {useState} from 'react';
-import { ListItem, ListItemText, InputBase, Checkbox } from "@mui/material";
+import { ListItem, ListItemText, InputBase, Checkbox, ListItemSecondaryAction, IconButton } from "@mui/material";
+import DeleteIcon from '@mui/icons-material/Delete';
+
+
 
 const Todo = ({item}) => {
     
-
 
     return (
         <>
@@ -21,6 +23,13 @@ const Todo = ({item}) => {
                     />
 
                 </ListItemText>
+
+                <ListItemSecondaryAction>
+                    <IconButton aria-label="Delete Todo">
+                        <DeleteIcon/>
+                    </IconButton>            
+                </ListItemSecondaryAction>
+
             </ListItem>
 
 
