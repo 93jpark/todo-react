@@ -7,26 +7,25 @@ const AddTodo = ({add}) => {
     // const item = { item : { title : "" } }
 
     const onInputChange = (e) => {
-        // const thisItem = item;
-        // thisItem.title = e.target.value;
-        setItem({title: e.target.value})
-        console.log("now item is ", item);
+        setItem({title: e.target.value});
     }
 
-    const addItem = () => {
+    const addItemHandler = () => {
         add(item);
         initItem();
     }
 
     const initItem = () => {
         setItem({title:""});
-        console.log("item state is initialized");
     }
 
     const enterKeyEventHandler = (e) => {
         if(e.key === 'Enter') {
-            addItem();
+            if(e.target.value !== '') {
+                addItemHandler();
+            }
         }
+        
     }
 
     return (
@@ -47,9 +46,7 @@ const AddTodo = ({add}) => {
                             fullWidth 
                             color="secondary" 
                             variant="outlined"
-                            onClick={
-                                ()=>{add(item); initItem();}
-                            }
+                            onClick={addItemHandler}
                         >
                             +
                         </Button>
