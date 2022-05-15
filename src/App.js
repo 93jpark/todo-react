@@ -24,23 +24,27 @@ const App = () => {
     const newItems = items.filter(e => e.id !== item.id);
     setItems(newItems);
   }
+
+  const switchDone = (item) => {
+      item.done = !item.done;
+      console.log("switchDone works")
+  }
   
   const todoItems = () => {
     
+
       return(
         <div>
             <Paper style={{margin:16}}>
               <List>             
-                {items.map((item, idx)=> (<Todo item={item} key={item.id} remove={remove}/>))}
+                {items.map((item, idx)=> (<Todo switchDone={switchDone} item={item} key={item.id} remove={remove}/>))}
               </List>
-            </Paper>
-          
-          
+            </Paper>    
       </div>
       )
+
       
       
-    
   }
 
 
@@ -50,11 +54,7 @@ const App = () => {
         <Container maxWidth="md">
           <AddTodo add={add} />
             <div className="TodoList">
-              <Paper style={{margin:16}}>
-                <List>             
-                  {items.map((item, idx)=> (<Todo item={item} key={item.id} remove={remove}/>))}
-                </List>
-              </Paper>
+              {items.length > 0 ? todoItems() : null}
             </div>
         </Container>
       </div>

@@ -4,16 +4,21 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
-const Todo = ({item, remove}) => {
+const Todo = ({item, remove, switchDone}) => {
     
     const removeEventHandler = () => {
         remove(item);
     }
 
+
     return (
         <>
             <ListItem>
-                <Checkbox checked={item.done} disableRipple />
+                <Checkbox 
+                    checked={item.done} 
+                    disableRipple 
+                    onClick={switchDone(item)}
+                />
                 <ListItemText>
                     <InputBase
                         inputProps={{"aria-label":"naked"}}
