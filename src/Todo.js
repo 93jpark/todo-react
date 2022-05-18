@@ -3,11 +3,19 @@ import { ListItem, ListItemText, InputBase, Checkbox, ListItemSecondaryAction, I
 import DeleteIcon from '@mui/icons-material/Delete';
 
 
-
 const Todo = ({item, remove, switchDone}) => {
+    const [checkStatus, setCheckStatus] = useState(item.done);
     
+
     const removeEventHandler = () => {
         remove(item);
+    }
+
+    const checkboxHandler = () => {
+        setCheckStatus(!checkStatus);
+        switchDone(item);
+        
+
     }
 
 
@@ -17,7 +25,7 @@ const Todo = ({item, remove, switchDone}) => {
                 <Checkbox 
                     checked={item.done} 
                     disableRipple 
-                    onClick={switchDone(item)}
+                    onClick={checkboxHandler}
                 />
                 <ListItemText>
                     <InputBase
