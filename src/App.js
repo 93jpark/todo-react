@@ -29,23 +29,29 @@ const App = () => {
       item.done = !item.done;
       console.log("switchDone works")
   }
+
+  const updateItem = (item, updatedItem) => {
+    item.title = updatedItem.title;
+    console.log("updated item title");
+  }
   
   const todoItems = () => {
-    
-
       return(
         <div>
             <Paper style={{margin:16}}>
               <List>             
-                {items.map((item, idx)=> (<Todo switchDone={switchDone} item={item} key={item.id} remove={remove}/>))}
+                {
+                  items.map((item, idx)=> 
+                    (<Todo switchDone={switchDone} updateItem={updateItem}
+                    item={item} key={item.id} remove={remove}/>))
+                }
               </List>
             </Paper>    
       </div>
       )
-
-      
-      
   }
+
+
 
 
   return (
