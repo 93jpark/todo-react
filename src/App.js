@@ -4,7 +4,27 @@ import Todo from './Todo';
 import AddTodo from './AddTodo.js';
 import { Paper, List, Container } from "@mui/material"
 
+
 const App = () => {
+
+  const componentDidMount = () => {
+    const requestOptions = {
+      method: "GET",
+      headers: {'Content-TYpe': 'application/json'},
+    };
+  
+    fetch("http://localhost:8080/todo", requestOptions)
+      .then((response)=>response.json())
+      .then(
+        (response)=>{
+          setItems({items: response.data,});
+        },
+        (error) => {
+          console.log("error");
+        }
+      )
+  }
+
 
   const [items, setItems] = useState([ {id:'ID-0', done:'true', title:'hello'} ]);
 
