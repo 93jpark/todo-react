@@ -4,8 +4,6 @@ import { TextField, Paper, Button, Grid } from "@mui/material";
 const AddTodo = ({add}) => {
     const [item, setItem] = useState({title:""});
 
-    // const item = { item : { title : "" } }
-
     const onInputChange = (e) => {
         setItem({title: e.target.value});
     }
@@ -25,7 +23,6 @@ const AddTodo = ({add}) => {
                 addItemHandler();
             }
         }
-        
     }
 
     return (
