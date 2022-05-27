@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Todo from './Todo';
 import AddTodo from './AddTodo.js';
 import { Paper, List, Container } from "@mui/material"
-
+import { call } from './service/ApiService';
 
 const App = () => {
 
@@ -16,34 +16,33 @@ const App = () => {
   };
 
   useEffect(()=> {
-    fetch("http://localhost:8080/todo", requestOptions)
-    .then((response) => response.json())
-    .then(
-      (response) => {
-        setItems(response.data);
-      },
-      (error) => {
-        setError(error);
-        console.log(error);
-      }
-    );    
+    call("/todo", "GET", null)
+      .then((response)=>setItems(response.data));
   });
 
 
   const add = (item) => {
     console.log("add in App.js executed");
+    /*
     const currentItems = [...items];
     item.id = "ID-" + items.length; // key를 위한 id 추가
     item.done = false;
     currentItems.push(item);
     setItems(currentItems);
     console.log("items : ", items);
+    */
+   call("/todo", "POST", item)
+    .then((response)=>setItems(response.data));
  
   }
   
   const remove = (item) => {
+    /*
     const newItems = items.filter(e => e.id !== item.id);
     setItems(newItems);
+    */
+   call("/todo", "DELETE", item)
+    .then((response)=>setItems(response.data));
   }
 
   const switchDone = (item) => {
