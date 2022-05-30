@@ -8,7 +8,7 @@ import { call } from './service/ApiService';
 const App = () => {
 
   const [error, setError] = useState();
-  const [items, setItems] = useState();
+  const [items, setItems] = useState({items:[]});
 
   const requestOptions = {
     method: "GET",
@@ -17,11 +17,19 @@ const App = () => {
 
   useEffect(()=> {
     call("/todo", "GET", null)
-      .then((response)=>setItems(response.data));
-  });
+      .then((response)=>
+        setItems(response.data)
+      );
+      
+  }, []);
 
 
   const add = (item) => {
+    
+    call("/todo", "POST", item)
+    .then((response)=>setItems(response.data));
+ 
+
     console.log("add in App.js executed");
     /*
     const currentItems = [...items];
@@ -31,8 +39,6 @@ const App = () => {
     setItems(currentItems);
     console.log("items : ", items);
     */
-   call("/todo", "POST", item)
-    .then((response)=>setItems(response.data));
  
   }
   
@@ -47,12 +53,17 @@ const App = () => {
 
   const switchDone = (item) => {
       item.done = !item.done;
+      updateItem(item);
       console.log("switchDone works")
   }
 
-  const updateItem = (item, updatedItem) => {
+  const updateItem = (updatedItem) => {
+    /*
     item.title = updatedItem.title;
     console.log("updated item title");
+    */
+    call("/todo", "PUT", updatedItem)
+    .then((response)=>setItems(response.data));
   }
   
   const todoItems = () => {

@@ -1,13 +1,14 @@
-import { API_BASE_URL } from "../app-config";
+import { API_BASE_URL } from "../api-config";
 
 export function call(api, method, request) {
-    options = {
+    const options = {
         headers: new Headers({
             "Content-Type": "application/json",
         }),
         url: API_BASE_URL + api,
         method: method,
     };
+    
     if(request) {
         // GET method
         options.body = JSON.stringify(request);

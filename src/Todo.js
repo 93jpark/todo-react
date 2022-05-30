@@ -34,7 +34,7 @@ const Todo = ({item, remove, switchDone, updateItem}) => {
     const editEventHandler = (e) => {
         const updatedItem = item;
         updatedItem.title = e.target.value;
-        updateItem(item, updatedItem);
+        updateItem(updatedItem);
     }
 
     return (
