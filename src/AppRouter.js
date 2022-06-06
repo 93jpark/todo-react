@@ -2,8 +2,8 @@ import React from 'react';
 import './index.css';
 import App from './App';
 import Login from './Login';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Box from '@mui/material'
+import { BrowserRouter, Router, Routes, Route } from 'react-router-dom';
+import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 
 const Copyright = () => {
@@ -18,21 +18,15 @@ const Copyright = () => {
 const AppRouter = () => {
     return (
         <div>
-            <Router>
-                <div>
-                    <Switch>
-                        <Route path="/login">
-                            <Login />
-                        </Route>
-                        <Route path="/">
-                            <App />
-                        </Route>
-                    </Switch>
-                </div>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<App/>} />
+                </Routes>
                 <Box mt={5}>
                     <Copyright/>
                 </Box>
-            </Router>
+            </BrowserRouter>
         </div>
     )
 }
