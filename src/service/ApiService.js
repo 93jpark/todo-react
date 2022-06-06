@@ -8,7 +8,7 @@ export function call(api, method, request) {
         url: API_BASE_URL + api,
         method: method,
     };
-    
+
     if(request) {
         // GET method
         options.body = JSON.stringify(request);
@@ -24,4 +24,11 @@ export function call(api, method, request) {
             return json;
         })
     ))
+    .catch((error)=> {
+        console.log(error.status);
+        if(error.status === 403) {
+            window.location.href = "/login"; // redirect
+        }
+        return Promise.reject(json);
+    })
 }
