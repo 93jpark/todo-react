@@ -2,8 +2,8 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 import Todo from './Todo';
 import AddTodo from './AddTodo.js';
-import { Paper, List, Container } from "@mui/material"
-import { call } from './service/ApiService';
+import { Paper, List, Container, Grid, Button, AppBar, Toolbar, Typography } from "@mui/material"
+import { call, signout } from './service/ApiService';
 
 const App = () => {
 
@@ -31,15 +31,7 @@ const App = () => {
  
 
     console.log("add in App.js executed");
-    /*
-    const currentItems = [...items];
-    item.id = "ID-" + items.length; // key를 위한 id 추가
-    item.done = false;
-    currentItems.push(item);
-    setItems(currentItems);
-    console.log("items : ", items);
-    */
- 
+  
   }
   
   const remove = (item) => {
@@ -73,13 +65,38 @@ const App = () => {
               <List>             
                 {
                   items.map((item, idx)=> 
-                    (<Todo switchDone={switchDone} updateItem={updateItem}
-                    item={item} key={item.id} remove={remove}/>))
+                    (<Todo 
+                      switchDone={switchDone} 
+                      updateItem={updateItem}
+                      item={item} 
+                      key={item.id} 
+                      remove={remove}
+                      />)
+                      )
                 }
               </List>
             </Paper>    
       </div>
       )
+  }
+
+  const navigationBar = () => {
+    return (
+      <AppBar position="static">
+        <Toolbar>
+          <Grid justify="space-between" container>
+            <Grid item xs={9}>
+              <Typography variant="h6">오늘의 할일</Typography>
+            </Grid>
+            <Grid xs={3}>
+              <Button color="inherit" onClick={signout}>
+                로그아웃
+              </Button>
+            </Grid>
+          </Grid>
+        </Toolbar>
+      </AppBar>
+    )
   }
 
 
@@ -88,6 +105,7 @@ const App = () => {
   return (
     <>
       <div className='App'>
+        {navigationBar()} {/* 내비게이션 바 렌더링 */}
         <Container maxWidth="md">
           <AddTodo add={add} />
             <div className="TodoList">
