@@ -9,6 +9,7 @@ const App = () => {
 
   const [error, setError] = useState();
   const [items, setItems] = useState({items:[]});
+  const [loading, setLoading] = useState(true);
 
   const requestOptions = {
     method: "GET",
@@ -18,7 +19,10 @@ const App = () => {
   useEffect(()=> {
     call("/todo", "GET", null)
       .then((response)=>
-        setItems(response.data)
+        {
+          setItems(response.data);
+          setLoading(false);
+        }
       );
       
   }, []);
@@ -99,20 +103,38 @@ const App = () => {
     )
   }
 
+  const todoListPage = () => {
+    return (
+      <div>
+        {navigationBar()} {/* 내비게이션 바 렌더링 */}
+        <Container>
+          <AddTodo add={add} />
+          <div className="TodoList">
+            {items.length > 0 ? todoItems() : null}
+          </div>
+        </Container>
+      </div>
+    )
+  }
 
+  const loadingPage = () => {
+    return (
+      <h1> 로딩중 .. </h1>
+    )
+  }
+
+  let content;
 
 
   return (
     <>
-      <div className='App'>
-        {navigationBar()} {/* 내비게이션 바 렌더링 */}
-        <Container maxWidth="md">
-          <AddTodo add={add} />
-            <div className="TodoList">
-              {items.length > 0 ? todoItems() : null}
-            </div>
-        </Container>
+      
+
+      <div>
+        <div className="App">{loading ? loadingPage() : todoListPage()}</div>
       </div>
+      
+      
     </>
   );
 }

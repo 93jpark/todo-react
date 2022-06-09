@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Paper, Button, Grid } from "@mui/material";
 
-const AddTodo = ({add}) => {
+const AddTodo = ({ add }) => {
     const [item, setItem] = useState({title:""});
 
     const onInputChange = (e) => {
