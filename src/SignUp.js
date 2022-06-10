@@ -3,15 +3,20 @@ import { Button, TextField, Link, Grid, Container, Typography } from '@mui/mater
 import { signup } from "./service/ApiService";
 
 
-const Signup = (event) => {
-    const handleSubmit = () => {
+const SignUp = () => {
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
         const data = new FormData(event.target);
         const username = data.get("username");
         const email = data.get("email");
         const password = data.get("password");
 
+        console.log(username, email, password);
+
         signup({ email: email, username:username, password:password }).then(
             (response) => {
+                console.log(response);
                 // 계정 생성 성공 시 login 페이지로 리다이렉트
                 window.location.href = "/login";
             }
