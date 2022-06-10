@@ -62,3 +62,7 @@ export const signout = () => {
     window.location.href = "/login";
 }
 
+export const signup = () => {
+    return call("/auth/signup", "POST", userDTO);
+}
+
